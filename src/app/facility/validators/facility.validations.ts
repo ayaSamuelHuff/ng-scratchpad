@@ -1,5 +1,4 @@
-import { ValidationContext, ValidationSuite } from "@app/shared/validation";
-import { Facility } from "../models/facility.model";
+import { ValidationSuite } from "@app/shared/validation";
 import { Validators } from "@angular/forms";
 
 export const facilityValidationSuite: ValidationSuite = ({

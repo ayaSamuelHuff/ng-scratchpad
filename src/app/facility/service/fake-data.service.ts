@@ -3,12 +3,12 @@ import { Facility } from "../models/facility.model";
 
 export class DataService {
     facility$: Observable<Facility> = of({
-        name: 'Bobs Hospital Extrordinaire',
+        name: 'The White House',
         address: {
-            street: '123 N Alphabet St.',
-            city: 'Jaynesville',
-            zip: '00000',
-            stateId: 'AK'
+            street: '1600 Pennsylvania Ave.',
+            city: 'Washington',
+            zip: '20500',
+            stateId: 'DC'
         }
     })
 }

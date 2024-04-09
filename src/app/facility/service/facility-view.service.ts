@@ -1,7 +1,7 @@
 import { Injectable, inject } from "@angular/core";
 import { Observable, filter, map, take } from "rxjs";
 import { Facility } from "../models/facility.model";
-import { areDifferent, deepClone } from "@app/shared/core";
+import { deepClone } from "@app/shared/core";
 import { DataService } from "./fake-data.service";
 
 @Injectable({ providedIn: 'root' })
