@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { Facility } from '@app/facility/models/facility.model';
 import { FORMS } from '@app/shared/core';
 import { FacilityAddressFormComponent } from '../facility-address-form/facility-address-form.component';
 import { FacilityGeneralFormComponent } from '../facility-general-form/facility-general-form.component';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-facility-form',
@@ -12,9 +13,9 @@ import { FacilityGeneralFormComponent } from '../facility-general-form/facility-
     <app-facility-general-form [vm]="vm"></app-facility-general-form>
     <div class="row">
       <app-facility-address-form [vm]="vm?.address"></app-facility-address-form>
-  </div>
-  </form>`,
+    </div>
+  </form>`
 })
-export class FacilityFormComponent  {
+export class FacilityFormComponent {  
   @Input() vm?: Partial<Facility>;
 }

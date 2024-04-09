@@ -27,7 +27,7 @@ export const FORMS = [
   FormFieldNgModelDirective, FormValidationScopeDirective,
   InputErrorComponent, InputSelectComponent, InputTextComponent,
   MatButtonModule, MatCardModule, MatInputModule, MatRadioModule, MatSelectModule,
-  FormsModule,
+  FormsModule
 ];
 /** Standard imports for (almost) every Reactive Forms component in this app. */
 export const REACTIVE_FORMS = [

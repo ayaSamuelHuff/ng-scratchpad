@@ -1,9 +1,14 @@
 import { InjectionToken } from '@angular/core';
-import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Indexable } from '@app/shared/core/utils';
 
 export const ASYNC_VALIDATION_SUITE_FACTORIES = new InjectionToken('Async Validation Suite Factories');
 export const SYNC_VALIDATION_SUITES = new InjectionToken('Synchronous Validation Suites');
+
+export type AsyncValidator = {
+  fn: AsyncValidatorFn;
+  message: string;
+}
 
 export type Validator = {
   fn: ValidatorFn;
@@ -11,7 +16,7 @@ export type Validator = {
 }
 
 /** Creates AsyncValidationSuite */
-export type AsyncValidationSuiteFactory = () => ValidationSuite;
+export type AsyncValidationSuiteFactory = () => AsyncValidationSuite;
 
 /** Map of asynchronous vest validation suite factories (creators), keyed by model type. */
 export interface AsyncValidationSuiteFactories extends Indexable<AsyncValidationSuiteFactory> {
@@ -25,6 +30,10 @@ export interface SyncValidationSuites extends Indexable<ValidationSuite> {
 export type ValidationSuite = {
   [name: string]: Validator[]
 } 
+
+export type AsyncValidationSuite = {
+  [name: string]: AsyncValidator[];
+}
 
 /** Vest validation suite function. Pass to vest `create()` to make a vest suite. */
 export type ValidationSuiteFn = (

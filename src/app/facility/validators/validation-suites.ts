@@ -1,17 +1,19 @@
 import { Indexable } from "@app/shared/core";
 import { addressValidationSuite } from "./facility-address.sync-validators";
 import { facilityValidationSuite } from "./facility.validations";
-import { ASYNC_VALIDATION_SUITE_FACTORIES, SYNC_VALIDATION_SUITES, ValidationSuite } from "@app/shared/validation";
+import { ASYNC_VALIDATION_SUITE_FACTORIES, AsyncValidationSuite, SYNC_VALIDATION_SUITES, ValidationSuite } from "@app/shared/validation";
 import { Provider } from "@angular/core";
 import { addressAsyncValidationSuite } from "./facility-address.async-validators";
+import { facilityAsyncValidationSuite } from "./facility.async-validations";
 
 export const syncValidationSuites: Indexable<ValidationSuite> = {
     facility: facilityValidationSuite,
     address: addressValidationSuite,
 }
 
-export const asyncValidationSuties: Indexable<() => ValidationSuite> = {
+export const asyncValidationSuties: Indexable<() => AsyncValidationSuite> = {
     address: addressAsyncValidationSuite,
+    facility: facilityAsyncValidationSuite
 }
 
 export const validationSuiteProviders: Provider[] = [
