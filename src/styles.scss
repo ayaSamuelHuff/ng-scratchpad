@@ -1,1 +1,94 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+@include mat.core();
+
+// Light theme
+$light-primary: mat.define-palette(mat.$indigo-palette);
+$light-accent: mat.define-palette(mat.$pink-palette);
+$light-theme: mat.define-light-theme((
+ color: (
+   primary: $light-primary,
+   accent: $light-accent,
+ )
+));
+
+// Apply the light theme by default
+@include mat.core-theme($light-theme);
+@include mat.button-theme($light-theme);
+
+html, body { height: 100%; }
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  margin: 0.5rem;
+}
+
+// Hide the spinner when the input type is 'number'. The spinner is a bad joke.
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.col {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.col:last-child {
+  margin-right: 0;
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+.short-width {
+  min-width: 5rem;
+  width: 22%;
+}
+
+.mid-width {
+  min-width: 5rem;
+  max-width: 20rem;
+  width: 50%;
+}
+
+mat-card {
+  margin: 1rem auto;
+  max-width: 100rem;
+  min-width: 10rem;
+  width: 95%;
+}
+
+mat-card-header {
+  margin-left: -16px;
+  margin-bottom: 1rem;
+}
+
+.mat-radio-button {
+  display: block;
+  margin: 5px 0;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.0;
+  }
+}
+
+input-error {
+  .error {
+    color: red;
+    font-size: 80%
+  }
+  .pending {
+    animation: blink 1s step-start 0s infinite;
+    color: blue;
+    font-size: 80%
+  }
+}
