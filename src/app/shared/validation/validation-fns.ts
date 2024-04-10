@@ -25,18 +25,16 @@ export function syncFieldValidator(
   context?: ValidationContext,           // extra stuff validators could use
 ): ValidatorFn | ValidatorFn[] {
 
-  // HACK to find out if the field is required.
-  // Angular Material  looks for an Angular required validator and draws the component label accordingly.
-  // So if we discover that the field is required, "compose" with that Angular required validator
-  // const testRun = suite({ [field]: null }, field, group, context).getErrors();
-  // const isRequired = (testRun[field] ?? []).some(err => err.includes('is required'));
-  // return isRequired ? [vestValidator, Validators.required] : vestValidator;
-
+  // This is the magic "special sauce" that ties this whole thing together. This runs all the validators injected for this model type and field, then maps the failures back to the message defined for the failure
+  // in the validation suite. If one or more validators fail, the first failure message gets set as the error and passed back to the native Angular validation code.
   const suiteValidator = (control: AbstractControl): ValidationErrors | null => {
-    if (!suite[field]) {
+    const validator = suite[field];
+
+    if (!validator) {
       return null;
     }
-    const errors = suite[field].map(x => x.fn(control) == null ? null : x.message).filter(x => x != null);
+
+    const errors = validator.map(x => x.fn(control) == null ? null : x.message).filter(x => x != null);
 
     return errors.length > 0 ? { error: errors[0] } : null;
   }
@@ -70,29 +68,28 @@ export function asyncFieldValidator(
   group?: string,
   context?: ValidationContext,
 ): AsyncValidatorFn {
-  // console.log(`*** Creating vestAsyncValidator for field ${field}`)
-  // TODO: Map the results of an async validation similar to how the sync validation works.
-  // for now, async validators do not run.
+
+  // Same thing here as above, this is the magic. There's just a little extra work to handle promises and observable responses.
+  // This is a hacked together example and can be improved.
   const vestAsyncValidator = (control: AbstractControl): Promise<ValidationErrors | null> => {
     const promise = new Promise<ValidationErrors | null>((resolve) => {
-      if (!suite[field]) {
+      const validator = suite[field];
+
+      if (!validator) {
         resolve(null);
+      } else {
+        const obs = validator.map(v => toObservable(v.fn(control)).pipe(
+          map(x => x == null ? null : v.message),
+        ));
+
+        combineLatest(obs).subscribe(errs => {
+          const messages = errs.filter(x => x != null);
+
+          resolve(messages.length == 0 ? null : { error: messages[0] })
+        });
       }
 
-      const obs = suite[field].map(v => toObservable(v.fn(control)).pipe(
-        map(x => x == null ? null : v.message),
-      ));
 
-
-      combineLatest(obs).subscribe(errs => {
-        const messages = errs.filter(x => x != null);
-
-        console.log('Result',
-          messages
-        )
-
-        resolve(messages.length == 0 ? null : { error: messages[0] })
-      })
     })
     return promise;
   };

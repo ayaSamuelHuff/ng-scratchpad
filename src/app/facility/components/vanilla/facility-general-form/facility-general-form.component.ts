@@ -21,7 +21,5 @@ import { ForbiddenNameValidatorDirective } from '@app/facility/validators/forbid
   viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class FacilityGeneralFormComponent {
-  @ViewChild('name') input: any;
-
   @Input() vm!: Facility;
 }

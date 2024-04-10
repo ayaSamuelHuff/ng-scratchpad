@@ -7,10 +7,13 @@ import { addressAsyncValidationSuite } from "./facility-address.async-validators
 import { facilityAsyncValidationSuite } from "./facility.async-validations";
 
 export const syncValidationSuites: Indexable<ValidationSuite> = {
+    // These are bound to the "modelName" property on components. This will bind to "facility"
     facility: facilityValidationSuite,
+    // And this to "address"
     address: addressValidationSuite,
 }
 
+// It works with async validators too!
 export const asyncValidationSuties: Indexable<() => AsyncValidationSuite> = {
     address: addressAsyncValidationSuite,
     facility: facilityAsyncValidationSuite

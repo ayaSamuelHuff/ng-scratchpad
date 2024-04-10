@@ -27,13 +27,13 @@ export interface SyncValidationSuites extends Indexable<ValidationSuite> {
 }
 
 /** A vest sync or async validation suite, shaped for this validation implementation. */
-export type ValidationSuite = {
-  [name: string]: Validator[]
-} 
+export type ValidationSuite<T extends Indexable = Indexable> = Partial<{
+  [Property in keyof T]: Validator[]
+}>;
 
-export type AsyncValidationSuite = {
-  [name: string]: AsyncValidator[];
-}
+export type AsyncValidationSuite<T extends Indexable = Indexable> = Partial<{
+  [Property in keyof T]: AsyncValidator[];
+}>;
 
 /** Vest validation suite function. Pass to vest `create()` to make a vest suite. */
 export type ValidationSuiteFn = (
