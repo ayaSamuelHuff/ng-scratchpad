@@ -3,7 +3,6 @@ import { Facility } from '@app/facility/models/facility.model';
 import { FORMS } from '@app/shared/core';
 import { FacilityAddressFormComponent } from '../facility-address-form/facility-address-form.component';
 import { FacilityGeneralFormComponent } from '../facility-general-form/facility-general-form.component';
-import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-facility-form',

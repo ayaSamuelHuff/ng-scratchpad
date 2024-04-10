@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { resolveFacility } from './facility/resolvers/facility.resolver';
 import { FacilityPageComponent } from './facility/components/template/facility-page/facility-page.component';
 import { NewFacilityPageComponent } from './facility/components/template/new-facility-page/new-facility-page.component';
+import { NewFacilityPageComponent as NewFacilityPageVanillaComponent } from './facility/components/vanilla/new-facility-page/new-facility-page.component';
+
 
 export const routes: Routes = [
     {
@@ -19,5 +21,9 @@ export const routes: Routes = [
         resolve: {
             facility: resolveFacility
         }
+    },
+    {
+        path: 'vanilla/facility',
+        component: NewFacilityPageVanillaComponent,
     }
 ];

@@ -14,12 +14,8 @@ import { CommonModule } from '@angular/common';
   }`,
   imports: [FacilityFormComponent, CommonModule]
 })
-export class FacilityPageComponent implements OnInit {
+export class FacilityPageComponent {
   private activatedRoute = inject(ActivatedRoute);
 
-  vm$!: Observable<Partial<Facility>>;
-
-  ngOnInit(): void {
-    this.vm$ = this.activatedRoute.data.pipe(map(x => x['facility']));
-  }
+  vm$: Observable<Partial<Facility>> = this.activatedRoute.data.pipe(map(x => x['facility']));
 }
