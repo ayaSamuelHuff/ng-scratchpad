@@ -4,4 +4,5 @@ import { FacilityAddress } from "./facility-address.model";
 export interface Facility extends Indexable {
     name: string | null;
     address: FacilityAddress;
+    phoneNumbers: string[];
 }

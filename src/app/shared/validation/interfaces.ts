@@ -1,5 +1,5 @@
 import { InjectionToken } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AsyncValidatorFn, ValidatorFn } from '@angular/forms';
 import { Indexable } from '@app/shared/core/utils';
 
 export const ASYNC_VALIDATION_SUITE_FACTORIES = new InjectionToken('Async Validation Suite Factories');
@@ -18,15 +18,14 @@ export type Validator = {
 /** Creates AsyncValidationSuite */
 export type AsyncValidationSuiteFactory = () => AsyncValidationSuite;
 
-/** Map of asynchronous vest validation suite factories (creators), keyed by model type. */
+/** Map of asynchronous validation suite factories (creators), keyed by model type. */
 export interface AsyncValidationSuiteFactories extends Indexable<AsyncValidationSuiteFactory> {
 }
 
-/** Map of synchronous vest validation suites, keyed by model type. */
+/** Map of synchronous validation suites, keyed by model type. */
 export interface SyncValidationSuites extends Indexable<ValidationSuite> {
 }
 
-/** A vest sync or async validation suite, shaped for this validation implementation. */
 export type ValidationSuite<T extends Indexable = Indexable> = Partial<{
   [Property in keyof T]: Validator[]
 }>;
@@ -34,14 +33,6 @@ export type ValidationSuite<T extends Indexable = Indexable> = Partial<{
 export type AsyncValidationSuite<T extends Indexable = Indexable> = Partial<{
   [Property in keyof T]: AsyncValidator[];
 }>;
-
-/** Vest validation suite function. Pass to vest `create()` to make a vest suite. */
-export type ValidationSuiteFn = (
-  model: Indexable,
-  field?: string,
-  group?: string,
-  vc?: ValidationContext
-) => void;
 
 /** Global context with properties and services for use by validations.
  * For example, it could contain a cache of other entities to reference.
