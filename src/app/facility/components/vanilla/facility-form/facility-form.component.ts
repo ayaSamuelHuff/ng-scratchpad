@@ -12,9 +12,10 @@ import { Facility } from '@app/facility/models/facility.model';
     FacilityGeneralFormComponent,
     FormsModule
   ],
-  template: `<form #facilityForm="ngForm">
+  template: `<form #facilityForm="ngForm" (submit)="submit()">
     <app-facility-general-form [vm]="vm"></app-facility-general-form>
     <app-facility-address-form [vm]="vm.address"></app-facility-address-form>
+    <button>Submit</button>
   </form>`
 })
 export class FacilityFormComponent {
@@ -24,5 +25,9 @@ export class FacilityFormComponent {
 
   ngAfterViewInit() {
     this.form?.valueChanges?.subscribe(x => console.log(x));
+  }
+
+  submit() {
+    console.log('Submit', this.vm);
   }
 }
