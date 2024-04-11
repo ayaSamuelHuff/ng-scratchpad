@@ -1,0 +1,1 @@
+export { FacilityPageComponent as NewFacilityPageVanillaComponent } from './facility-page/facility-page.component';

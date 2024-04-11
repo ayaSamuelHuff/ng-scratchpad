@@ -2,6 +2,10 @@ import { Directive } from "@angular/core";
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, ValidatorFn } from "@angular/forms";
 
 export const forbiddenNameValidator = (): ValidatorFn => (control: AbstractControl) => {
+    if (!control.value) {
+        return null;
+    }
+
     const value: string = control.value;  
     
     return value.toLowerCase() === 'elmo' ? { forbiddenName: 'elmo' } : null;

@@ -1,0 +1,1 @@
+export { FacilityFormComponent as FacilityReactiveFormComponent } from './facility-form/facility-form.component';

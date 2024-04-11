@@ -16,10 +16,10 @@ export type Validator = {
 }
 
 /** Creates AsyncValidationSuite */
-export type AsyncValidationSuiteFactory = () => AsyncValidationSuite;
+export type AsyncValidationSuiteFactory<T extends Indexable = Indexable> = () => AsyncValidationSuite<T>;
 
 /** Map of asynchronous validation suite factories (creators), keyed by model type. */
-export interface AsyncValidationSuiteFactories extends Indexable<AsyncValidationSuiteFactory> {
+export interface AsyncValidationSuiteFactories extends Indexable<AsyncValidationSuiteFactory<Indexable>> {
 }
 
 /** Map of synchronous validation suites, keyed by model type. */

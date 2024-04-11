@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
 import { resolveFacility } from './facility/resolvers/facility.resolver';
-import { FacilityPageComponent } from './facility/components/template/facility-page/facility-page.component';
-import { NewFacilityPageComponent } from './facility/components/template/new-facility-page/new-facility-page.component';
-import { NewFacilityPageComponent as NewFacilityPageVanillaComponent } from './facility/components/vanilla/new-facility-page/new-facility-page.component';
+import { FacilityPageComponent as NewFacilityPageVanillaComponent } from './facility/components/vanilla/facility-page/facility-page.component';
+import { FacilityReactiveFormComponent } from './facility/components/reactive';
+import { FacilityTemplatePageComponent } from './facility/components/template';
 
 
 export const routes: Routes = [
@@ -13,17 +13,50 @@ export const routes: Routes = [
     },
     {
         path: 'facility',
-        component: NewFacilityPageComponent,
-    },
-    {
-        path: 'facility/:id',
-        component: FacilityPageComponent,
-        resolve: {
-            facility: resolveFacility
-        }
+        children: [
+            {
+                path: '',
+                component: FacilityTemplatePageComponent,
+            },
+            {
+                path: ':id',
+                component: FacilityTemplatePageComponent,
+                resolve: {
+                    facility: resolveFacility
+                }
+            }
+        ]
     },
     {
         path: 'vanilla/facility',
-        component: NewFacilityPageVanillaComponent,
-    }
+        children: [
+            {
+                path: '',
+                component: NewFacilityPageVanillaComponent,
+            },
+            {
+                path: ':id',
+                component: NewFacilityPageVanillaComponent,
+                resolve: {
+                    facility: resolveFacility
+                }
+            }
+        ]
+    },
+    {
+        path: 'reactive/facility',
+        children: [
+            {
+                path: '',
+                component: FacilityReactiveFormComponent,
+            },
+            {
+                path: ':id',
+                component: FacilityReactiveFormComponent,
+                resolve: {
+                    facility: resolveFacility
+                }
+            }
+        ]
+    },
 ];

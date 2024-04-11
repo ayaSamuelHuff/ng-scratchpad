@@ -7,7 +7,6 @@ export class DataService {
         phoneNumbers: [
             '111-111-1111',
             '222-222-2222',
-            
         ],
         address: {
             street: '1600 Pennsylvania Ave.',
