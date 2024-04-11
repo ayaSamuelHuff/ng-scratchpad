@@ -16,10 +16,12 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
+                title: 'Template + Framework | New',
                 component: FacilityTemplatePageComponent,
             },
             {
                 path: ':id',
+                title: 'Template + Framework | Edit',
                 component: FacilityTemplatePageComponent,
                 resolve: {
                     facility: resolveFacility
@@ -32,10 +34,12 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
+                title: 'Vanilla | New',
                 component: NewFacilityPageVanillaComponent,
             },
             {
                 path: ':id',
+                title: 'Vanilla | Edit',
                 component: NewFacilityPageVanillaComponent,
                 resolve: {
                     facility: resolveFacility
@@ -48,10 +52,12 @@ export const routes: Routes = [
         children: [
             {
                 path: '',
+                title: 'Reactive | New',
                 component: FacilityReactiveFormComponent,
             },
             {
                 path: ':id',
+                title: 'Reactive | Edit',
                 component: FacilityReactiveFormComponent,
                 resolve: {
                     facility: resolveFacility
