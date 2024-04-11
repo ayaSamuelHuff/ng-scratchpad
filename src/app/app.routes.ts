@@ -4,7 +4,6 @@ import { FacilityPageComponent as NewFacilityPageVanillaComponent } from './faci
 import { FacilityReactiveFormComponent } from './facility/components/reactive';
 import { FacilityTemplatePageComponent } from './facility/components/template';
 
-
 export const routes: Routes = [
     {
         path: '',
